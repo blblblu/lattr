@@ -1,0 +1,475 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>lattr</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="TabDocument">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <attribute name="title">
+        <string>Dokument</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_2">
+        <item row="0" column="0">
+         <widget class="QGroupBox" name="GroupBoxDocument">
+          <property name="title">
+           <string>Dokument</string>
+          </property>
+          <layout class="QFormLayout" name="formLayout_4">
+           <property name="fieldGrowthPolicy">
+            <enum>QFormLayout::FieldsStayAtSizeHint</enum>
+           </property>
+           <item row="0" column="0">
+            <widget class="QLabel" name="LabelDocumentclass">
+             <property name="text">
+              <string>Documentclass</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QLineEdit" name="InputDocumentclass">
+             <property name="enabled">
+              <bool>true</bool>
+             </property>
+             <property name="text">
+              <string>scrlttr2</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="LabelFontsize">
+             <property name="text">
+              <string>Schriftgröße</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QDoubleSpinBox" name="InputFontsize">
+             <property name="value">
+              <double>10.000000000000000</double>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="LabelLanguage">
+             <property name="text">
+              <string>Sprache für babel-Paket</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QLineEdit" name="InputLanguage">
+             <property name="text">
+              <string>ngerman</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0">
+            <widget class="QLabel" name="label">
+             <property name="text">
+              <string>Textausrichtung</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1">
+            <widget class="QComboBox" name="comboBox">
+             <item>
+              <property name="text">
+               <string>Blocksatz</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Linksbündig</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Rechtsbündig</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QGroupBox" name="GroupBoxTime">
+          <property name="title">
+           <string>Zeit</string>
+          </property>
+          <layout class="QFormLayout" name="formLayout_2">
+           <property name="fieldGrowthPolicy">
+            <enum>QFormLayout::FieldsStayAtSizeHint</enum>
+           </property>
+           <item row="0" column="1">
+            <widget class="QDateEdit" name="InputDate">
+             <property name="calendarPopup">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0">
+            <widget class="QLabel" name="LabelDate">
+             <property name="text">
+              <string>Datum</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="TabContent">
+       <attribute name="title">
+        <string>Inhalt</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_3">
+        <item row="0" column="0">
+         <widget class="QTabWidget" name="tabWidget_2">
+          <property name="currentIndex">
+           <number>0</number>
+          </property>
+          <widget class="QWidget" name="TabAddress">
+           <attribute name="title">
+            <string>Addressen</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_11">
+            <item row="0" column="0">
+             <widget class="QGroupBox" name="GroupBoxSender">
+              <property name="title">
+               <string>Absender</string>
+              </property>
+              <layout class="QGridLayout" name="gridLayout_4">
+               <item row="0" column="0">
+                <layout class="QHBoxLayout" name="horizontalLayout">
+                 <item>
+                  <widget class="QLabel" name="LabelSendername">
+                   <property name="text">
+                    <string>Name</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLineEdit" name="InputSendername"/>
+                 </item>
+                </layout>
+               </item>
+               <item row="2" column="0">
+                <widget class="QPlainTextEdit" name="InputSenderaddress"/>
+               </item>
+               <item row="1" column="0">
+                <widget class="QLabel" name="LabeSenderaddress">
+                 <property name="text">
+                  <string>Adresse</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QGroupBox" name="GroupBoxReceiver">
+              <property name="title">
+               <string>Empfänger</string>
+              </property>
+              <layout class="QGridLayout" name="gridLayout_5">
+               <item row="0" column="0">
+                <widget class="QPlainTextEdit" name="InputReceiver"/>
+               </item>
+              </layout>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="TabSentences">
+           <attribute name="title">
+            <string>Sätze</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_8">
+            <item row="0" column="0">
+             <widget class="QGroupBox" name="GroupBoxObject">
+              <property name="title">
+               <string>Thema</string>
+              </property>
+              <layout class="QGridLayout" name="gridLayout_9">
+               <item row="1" column="0">
+                <widget class="QLineEdit" name="InputObject"/>
+               </item>
+               <item row="0" column="0">
+                <widget class="QLabel" name="LabelObject">
+                 <property name="text">
+                  <string>Thema</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QGroupBox" name="GroupBoxIntroduction">
+              <property name="title">
+               <string>Einleitung</string>
+              </property>
+              <layout class="QGridLayout" name="gridLayout_14">
+               <item row="1" column="0">
+                <widget class="QLineEdit" name="InputIntroduction"/>
+               </item>
+               <item row="0" column="0">
+                <widget class="QLabel" name="LabelIntroduction">
+                 <property name="text">
+                  <string>Einleitung</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item row="2" column="0">
+             <widget class="QGroupBox" name="GroupBoxEnding">
+              <property name="title">
+               <string>Ende</string>
+              </property>
+              <layout class="QGridLayout" name="gridLayout_15">
+               <item row="0" column="0">
+                <widget class="QLabel" name="LabelEnding">
+                 <property name="text">
+                  <string>Abschluss</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QLineEdit" name="InputEnding"/>
+               </item>
+               <item row="2" column="0">
+                <widget class="QLabel" name="LabelSignature">
+                 <property name="text">
+                  <string>Signatur</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="0">
+                <widget class="QPlainTextEdit" name="InputSignature"/>
+               </item>
+              </layout>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="TabText">
+           <attribute name="title">
+            <string>Text</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_12">
+            <item row="0" column="0">
+             <widget class="QGroupBox" name="GroupBoxText">
+              <property name="title">
+               <string>Text</string>
+              </property>
+              <layout class="QGridLayout" name="gridLayout_13">
+               <item row="0" column="0">
+                <widget class="QPlainTextEdit" name="InputText"/>
+               </item>
+              </layout>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="TabExtras">
+       <attribute name="title">
+        <string>Extras</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_10">
+        <item row="0" column="0">
+         <widget class="QGroupBox" name="GroupBoxPackages">
+          <property name="title">
+           <string>Zusätzliche Pakete</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_7">
+           <item row="0" column="0">
+            <widget class="QPlainTextEdit" name="InputPackages"/>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QGroupBox" name="GroupBoxAttachement">
+          <property name="title">
+           <string>Anhänge</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_6">
+           <item row="0" column="0">
+            <widget class="QCheckBox" name="boolAttachement">
+             <property name="text">
+              <string>Anhänge benutzen?</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QPlainTextEdit" name="InputAttachement">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuDatei">
+    <property name="title">
+     <string>Datei</string>
+    </property>
+    <widget class="QMenu" name="menuExportieren">
+     <property name="title">
+      <string>Exportieren</string>
+     </property>
+     <addaction name="actionAls_tex_Datei"/>
+     <addaction name="actionAls_pdf_Datei"/>
+    </widget>
+    <addaction name="actionNew"/>
+    <addaction name="separator"/>
+    <addaction name="actionSpeichern"/>
+    <addaction name="actionSpeichern_unter"/>
+    <addaction name="separator"/>
+    <addaction name="menuExportieren"/>
+    <addaction name="separator"/>
+    <addaction name="actionQuit"/>
+   </widget>
+   <widget class="QMenu" name="menuHilfe">
+    <property name="title">
+     <string>Hilfe</string>
+    </property>
+    <addaction name="actionabout"/>
+   </widget>
+   <addaction name="menuDatei"/>
+   <addaction name="menuHilfe"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <action name="actionSpeichern">
+   <property name="text">
+    <string>Speichern</string>
+   </property>
+  </action>
+  <action name="actionSpeichern_unter">
+   <property name="text">
+    <string>Speichern unter</string>
+   </property>
+  </action>
+  <action name="actionAls_tex_Datei">
+   <property name="text">
+    <string>Als *.tex Datei</string>
+   </property>
+  </action>
+  <action name="actionAls_pdf_Datei">
+   <property name="text">
+    <string>Als *.pdf Datei</string>
+   </property>
+  </action>
+  <action name="actionQuit">
+   <property name="text">
+    <string>Beenden</string>
+   </property>
+  </action>
+  <action name="actionNew">
+   <property name="text">
+    <string>Neu</string>
+   </property>
+  </action>
+  <action name="actionabout">
+   <property name="text">
+    <string>Über</string>
+   </property>
+  </action>
+ </widget>
+ <tabstops>
+  <tabstop>tabWidget</tabstop>
+  <tabstop>InputDocumentclass</tabstop>
+  <tabstop>InputFontsize</tabstop>
+  <tabstop>InputLanguage</tabstop>
+  <tabstop>comboBox</tabstop>
+  <tabstop>InputDate</tabstop>
+  <tabstop>InputSendername</tabstop>
+  <tabstop>InputReceiver</tabstop>
+  <tabstop>InputPackages</tabstop>
+  <tabstop>boolAttachement</tabstop>
+  <tabstop>InputAttachement</tabstop>
+  <tabstop>InputSenderaddress</tabstop>
+ </tabstops>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>boolAttachement</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>InputAttachement</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>115</x>
+     <y>102</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>115</x>
+     <y>102</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionQuit</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
