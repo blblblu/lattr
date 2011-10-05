@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>lattr</string>
   </property>
+  <property name="locale">
+   <locale language="German" country="Germany"/>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="0">
