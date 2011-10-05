@@ -32,7 +32,7 @@
        </attribute>
        <layout class="QGridLayout" name="gridLayout_2">
         <item row="0" column="0">
-         <widget class="QGroupBox" name="GroupBoxDocument">
+         <widget class="QGroupBox" name="groupBoxDocument">
           <property name="title">
            <string>Dokument</string>
           </property>
@@ -41,47 +41,47 @@
             <enum>QFormLayout::FieldsStayAtSizeHint</enum>
            </property>
            <item row="0" column="0">
-            <widget class="QLabel" name="LabelDocumentclass">
+            <widget class="QLabel" name="labelTemplate">
              <property name="text">
-              <string>Documentclass</string>
+              <string>Vorlage</string>
              </property>
             </widget>
            </item>
            <item row="0" column="1">
-            <widget class="QLineEdit" name="InputDocumentclass">
+            <widget class="QLineEdit" name="inputTemplate">
              <property name="enabled">
               <bool>true</bool>
              </property>
              <property name="text">
-              <string>scrlttr2</string>
+              <string/>
              </property>
             </widget>
            </item>
            <item row="1" column="0">
-            <widget class="QLabel" name="LabelFontsize">
+            <widget class="QLabel" name="labelFontsize">
              <property name="text">
               <string>Schriftgröße</string>
              </property>
             </widget>
            </item>
            <item row="1" column="1">
-            <widget class="QDoubleSpinBox" name="InputFontsize">
+            <widget class="QDoubleSpinBox" name="inputFontsize">
              <property name="value">
-              <double>10.000000000000000</double>
+              <double>0.000000000000000</double>
              </property>
             </widget>
            </item>
            <item row="2" column="0">
-            <widget class="QLabel" name="LabelLanguage">
+            <widget class="QLabel" name="labelLanguage">
              <property name="text">
               <string>Sprache für babel-Paket</string>
              </property>
             </widget>
            </item>
            <item row="2" column="1">
-            <widget class="QLineEdit" name="InputLanguage">
+            <widget class="QLineEdit" name="inputLanguage">
              <property name="text">
-              <string>ngerman</string>
+              <string/>
              </property>
             </widget>
            </item>
@@ -93,7 +93,7 @@
             </widget>
            </item>
            <item row="3" column="1">
-            <widget class="QComboBox" name="comboBox">
+            <widget class="QComboBox" name="inputAlign">
              <item>
               <property name="text">
                <string>Blocksatz</string>
@@ -124,14 +124,14 @@
             <enum>QFormLayout::FieldsStayAtSizeHint</enum>
            </property>
            <item row="0" column="1">
-            <widget class="QDateEdit" name="InputDate">
+            <widget class="QDateEdit" name="inputDate">
              <property name="calendarPopup">
               <bool>true</bool>
              </property>
             </widget>
            </item>
            <item row="0" column="0">
-            <widget class="QLabel" name="LabelDate">
+            <widget class="QLabel" name="labelDate">
              <property name="text">
               <string>Datum</string>
              </property>
@@ -152,13 +152,13 @@
           <property name="currentIndex">
            <number>0</number>
           </property>
-          <widget class="QWidget" name="TabAddress">
+          <widget class="QWidget" name="tabAddress">
            <attribute name="title">
             <string>Addressen</string>
            </attribute>
            <layout class="QGridLayout" name="gridLayout_11">
             <item row="0" column="0">
-             <widget class="QGroupBox" name="GroupBoxSender">
+             <widget class="QGroupBox" name="groupBoxSender">
               <property name="title">
                <string>Absender</string>
               </property>
@@ -166,22 +166,22 @@
                <item row="0" column="0">
                 <layout class="QHBoxLayout" name="horizontalLayout">
                  <item>
-                  <widget class="QLabel" name="LabelSendername">
+                  <widget class="QLabel" name="labelSendername">
                    <property name="text">
                     <string>Name</string>
                    </property>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QLineEdit" name="InputSendername"/>
+                  <widget class="QLineEdit" name="inputSendername"/>
                  </item>
                 </layout>
                </item>
                <item row="2" column="0">
-                <widget class="QPlainTextEdit" name="InputSenderaddress"/>
+                <widget class="QPlainTextEdit" name="inputSenderaddress"/>
                </item>
                <item row="1" column="0">
-                <widget class="QLabel" name="LabeSenderaddress">
+                <widget class="QLabel" name="labelSenderaddress">
                  <property name="text">
                   <string>Adresse</string>
                  </property>
@@ -191,35 +191,35 @@
              </widget>
             </item>
             <item row="1" column="0">
-             <widget class="QGroupBox" name="GroupBoxReceiver">
+             <widget class="QGroupBox" name="groupBoxReceiver">
               <property name="title">
                <string>Empfänger</string>
               </property>
               <layout class="QGridLayout" name="gridLayout_5">
                <item row="0" column="0">
-                <widget class="QPlainTextEdit" name="InputReceiver"/>
+                <widget class="QPlainTextEdit" name="inputReceiver"/>
                </item>
               </layout>
              </widget>
             </item>
            </layout>
           </widget>
-          <widget class="QWidget" name="TabSentences">
+          <widget class="QWidget" name="tabSentences">
            <attribute name="title">
             <string>Sätze</string>
            </attribute>
            <layout class="QGridLayout" name="gridLayout_8">
             <item row="0" column="0">
-             <widget class="QGroupBox" name="GroupBoxObject">
+             <widget class="QGroupBox" name="groupBoxObject">
               <property name="title">
                <string>Thema</string>
               </property>
               <layout class="QGridLayout" name="gridLayout_9">
                <item row="1" column="0">
-                <widget class="QLineEdit" name="InputObject"/>
+                <widget class="QLineEdit" name="inputObject"/>
                </item>
                <item row="0" column="0">
-                <widget class="QLabel" name="LabelObject">
+                <widget class="QLabel" name="labelObject">
                  <property name="text">
                   <string>Thema</string>
                  </property>
@@ -229,16 +229,16 @@
              </widget>
             </item>
             <item row="1" column="0">
-             <widget class="QGroupBox" name="GroupBoxIntroduction">
+             <widget class="QGroupBox" name="groupBoxIntroduction">
               <property name="title">
                <string>Einleitung</string>
               </property>
               <layout class="QGridLayout" name="gridLayout_14">
                <item row="1" column="0">
-                <widget class="QLineEdit" name="InputIntroduction"/>
+                <widget class="QLineEdit" name="inputIntroduction"/>
                </item>
                <item row="0" column="0">
-                <widget class="QLabel" name="LabelIntroduction">
+                <widget class="QLabel" name="labelIntroduction">
                  <property name="text">
                   <string>Einleitung</string>
                  </property>
@@ -248,49 +248,49 @@
              </widget>
             </item>
             <item row="2" column="0">
-             <widget class="QGroupBox" name="GroupBoxEnding">
+             <widget class="QGroupBox" name="groupBoxEnding">
               <property name="title">
                <string>Ende</string>
               </property>
               <layout class="QGridLayout" name="gridLayout_15">
                <item row="0" column="0">
-                <widget class="QLabel" name="LabelEnding">
+                <widget class="QLabel" name="labelEnding">
                  <property name="text">
                   <string>Abschluss</string>
                  </property>
                 </widget>
                </item>
                <item row="1" column="0">
-                <widget class="QLineEdit" name="InputEnding"/>
+                <widget class="QLineEdit" name="inputEnding"/>
                </item>
                <item row="2" column="0">
-                <widget class="QLabel" name="LabelSignature">
+                <widget class="QLabel" name="labelSignature">
                  <property name="text">
                   <string>Signatur</string>
                  </property>
                 </widget>
                </item>
                <item row="3" column="0">
-                <widget class="QPlainTextEdit" name="InputSignature"/>
+                <widget class="QPlainTextEdit" name="inputSignature"/>
                </item>
               </layout>
              </widget>
             </item>
            </layout>
           </widget>
-          <widget class="QWidget" name="TabText">
+          <widget class="QWidget" name="tabText">
            <attribute name="title">
             <string>Text</string>
            </attribute>
            <layout class="QGridLayout" name="gridLayout_12">
             <item row="0" column="0">
-             <widget class="QGroupBox" name="GroupBoxText">
+             <widget class="QGroupBox" name="groupBoxText">
               <property name="title">
                <string>Text</string>
               </property>
               <layout class="QGridLayout" name="gridLayout_13">
                <item row="0" column="0">
-                <widget class="QPlainTextEdit" name="InputText"/>
+                <widget class="QPlainTextEdit" name="inputText"/>
                </item>
               </layout>
              </widget>
@@ -301,25 +301,25 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="TabExtras">
+      <widget class="QWidget" name="tabExtras">
        <attribute name="title">
         <string>Extras</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_10">
         <item row="0" column="0">
-         <widget class="QGroupBox" name="GroupBoxPackages">
+         <widget class="QGroupBox" name="groupBoxPackages">
           <property name="title">
            <string>Zusätzliche Pakete</string>
           </property>
           <layout class="QGridLayout" name="gridLayout_7">
            <item row="0" column="0">
-            <widget class="QPlainTextEdit" name="InputPackages"/>
+            <widget class="QPlainTextEdit" name="inputPackages"/>
            </item>
           </layout>
          </widget>
         </item>
         <item row="1" column="0">
-         <widget class="QGroupBox" name="GroupBoxAttachement">
+         <widget class="QGroupBox" name="groupBoxAttachement">
           <property name="title">
            <string>Anhänge</string>
           </property>
@@ -332,7 +332,7 @@
             </widget>
            </item>
            <item row="1" column="0">
-            <widget class="QPlainTextEdit" name="InputAttachement">
+            <widget class="QPlainTextEdit" name="inputAttachement">
              <property name="enabled">
               <bool>false</bool>
              </property>
@@ -360,19 +360,19 @@
     <property name="title">
      <string>Datei</string>
     </property>
-    <widget class="QMenu" name="menuExportieren">
+    <widget class="QMenu" name="menuExport">
      <property name="title">
-      <string>Exportieren</string>
+      <string>Exportieren...</string>
      </property>
-     <addaction name="actionAls_tex_Datei"/>
-     <addaction name="actionAls_pdf_Datei"/>
+     <addaction name="actionExportAsTex"/>
+     <addaction name="actionExportAsPdf"/>
     </widget>
     <addaction name="actionNew"/>
     <addaction name="separator"/>
-    <addaction name="actionSpeichern"/>
-    <addaction name="actionSpeichern_unter"/>
+    <addaction name="actionSave"/>
+    <addaction name="actionSaveAs"/>
     <addaction name="separator"/>
-    <addaction name="menuExportieren"/>
+    <addaction name="menuExport"/>
     <addaction name="separator"/>
     <addaction name="actionQuit"/>
    </widget>
@@ -380,7 +380,7 @@
     <property name="title">
      <string>Hilfe</string>
     </property>
-    <addaction name="actionabout"/>
+    <addaction name="actionAbout"/>
    </widget>
    <addaction name="menuDatei"/>
    <addaction name="menuHilfe"/>
@@ -390,22 +390,22 @@
     <bool>true</bool>
    </property>
   </widget>
-  <action name="actionSpeichern">
+  <action name="actionSave">
    <property name="text">
     <string>Speichern</string>
    </property>
   </action>
-  <action name="actionSpeichern_unter">
+  <action name="actionSaveAs">
    <property name="text">
     <string>Speichern unter</string>
    </property>
   </action>
-  <action name="actionAls_tex_Datei">
+  <action name="actionExportAsTex">
    <property name="text">
     <string>Als *.tex Datei</string>
    </property>
   </action>
-  <action name="actionAls_pdf_Datei">
+  <action name="actionExportAsPdf">
    <property name="text">
     <string>Als *.pdf Datei</string>
    </property>
@@ -420,7 +420,7 @@
     <string>Neu</string>
    </property>
   </action>
-  <action name="actionabout">
+  <action name="actionAbout">
    <property name="text">
     <string>Über</string>
    </property>
@@ -428,24 +428,24 @@
  </widget>
  <tabstops>
   <tabstop>tabWidget</tabstop>
-  <tabstop>InputDocumentclass</tabstop>
-  <tabstop>InputFontsize</tabstop>
-  <tabstop>InputLanguage</tabstop>
-  <tabstop>comboBox</tabstop>
-  <tabstop>InputDate</tabstop>
-  <tabstop>InputSendername</tabstop>
-  <tabstop>InputReceiver</tabstop>
-  <tabstop>InputPackages</tabstop>
+  <tabstop>inputTemplate</tabstop>
+  <tabstop>inputFontsize</tabstop>
+  <tabstop>inputLanguage</tabstop>
+  <tabstop>inputAlign</tabstop>
+  <tabstop>inputDate</tabstop>
+  <tabstop>inputSendername</tabstop>
+  <tabstop>inputReceiver</tabstop>
+  <tabstop>inputPackages</tabstop>
   <tabstop>boolAttachement</tabstop>
-  <tabstop>InputAttachement</tabstop>
-  <tabstop>InputSenderaddress</tabstop>
+  <tabstop>inputAttachement</tabstop>
+  <tabstop>inputSenderaddress</tabstop>
  </tabstops>
  <resources/>
  <connections>
   <connection>
    <sender>boolAttachement</sender>
    <signal>toggled(bool)</signal>
-   <receiver>InputAttachement</receiver>
+   <receiver>inputAttachement</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
