@@ -1,5 +1,20 @@
 #!/usr/bin/env python
 # lattrlib - library for lattr
+#
+#    Copyright (C) 2011  Sebastian Schulz
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    You should have received a copy of the GNU General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 '''
 This file contains all lattr specific functions, e.g. modifying the template.
@@ -17,29 +32,42 @@ class lattr(object):
 	"the lattr class"
 	def __init__(self):
 		super(lattr, self).__init__()
+
+		# set data to defaults
+		self.setData('scrlttr2', 10.0, 'ngerman', align_block, datetime.date.today(), '', '', '', '', '', '', '', '', '', False, '')
+
+	def setData(self,
+	# document settings
+	newTemplate, newFontsize, newLanguage, newAlign, newDate,
+	# content
+	newSendername, newSenderaddress, newReceiver, newObject, newIntroduction, newEnding, newSignature,
+	newText,
+	# extras
+	newPackages, newBoolAttachement, newAttachement):
+		"function for setting the whole letter at once"
 		# document settings
 		## document
-		self.template = 'scrlttr2'
-		self.fontsize = 10.0
-		self.language = 'ngerman'
-		self.align = align_block
+		self.template = newTemplate
+		self.fontsize = newFontsize
+		self.language = newLanguage
+		self.align = newAlign
 		## time
-		self.date = datetime.date.today()
+		self.date = newDate
 		# content
 		## addresses
-		self.sendername = ''
-		self.senderaddress = ''
-		self.receiver = ''
+		self.sendername = newSendername
+		self.senderaddress = newSenderaddress
+		self.receiver = newReceiver
 		## sentences
-		self.object = ''
-		self.introduction = ''
-		self.ending = ''
-		self.signature = ''
+		self.object = newObject
+		self.introduction = newObject
+		self.ending = newEnding
+		self.signature = newSignature
 		## text
-		self.text = ''
+		self.text = newText
 		# extras
 		## packages
-		self.packages = ''
+		self.packages = newPackages
 		## attachements
-		self.boolAttachement = False
-		self.attachements = ''
+		self.boolAttachement = newBoolAttachement
+		self.attachement = newAttachement
