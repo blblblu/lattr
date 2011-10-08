@@ -226,18 +226,18 @@
              </widget>
             </item>
             <item row="1" column="0">
-             <widget class="QGroupBox" name="groupBoxIntroduction">
+             <widget class="QGroupBox" name="groupBoxOpening">
               <property name="title">
-               <string>Introduction</string>
+               <string>Opening</string>
               </property>
               <layout class="QGridLayout" name="gridLayout_14">
                <item row="1" column="0">
-                <widget class="QLineEdit" name="inputIntroduction"/>
+                <widget class="QLineEdit" name="inputOpening"/>
                </item>
                <item row="0" column="0">
-                <widget class="QLabel" name="labelIntroduction">
+                <widget class="QLabel" name="labelOpening">
                  <property name="text">
-                  <string>Introduction</string>
+                  <string>Opening</string>
                  </property>
                 </widget>
                </item>
@@ -245,20 +245,20 @@
              </widget>
             </item>
             <item row="2" column="0">
-             <widget class="QGroupBox" name="groupBoxEnding">
+             <widget class="QGroupBox" name="groupBoxClosing">
               <property name="title">
-               <string>Ending</string>
+               <string>Closing</string>
               </property>
               <layout class="QGridLayout" name="gridLayout_15">
                <item row="0" column="0">
-                <widget class="QLabel" name="labelEnding">
+                <widget class="QLabel" name="labelClosing">
                  <property name="text">
-                  <string>Ending</string>
+                  <string>Closing</string>
                  </property>
                 </widget>
                </item>
                <item row="1" column="0">
-                <widget class="QLineEdit" name="inputEnding"/>
+                <widget class="QLineEdit" name="inputClosing"/>
                </item>
                <item row="2" column="0">
                 <widget class="QLabel" name="labelSignature">
@@ -359,7 +359,7 @@
     </property>
     <widget class="QMenu" name="menuExport">
      <property name="title">
-      <string>Exportieren...</string>
+      <string>Export</string>
      </property>
      <addaction name="actionExportAsTex"/>
      <addaction name="actionExportAsPdf"/>
@@ -407,6 +407,9 @@
    </property>
   </action>
   <action name="actionExportAsPdf">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>As *.pdf...</string>
    </property>
