@@ -33,6 +33,7 @@ class LattrMainWindow(QtGui.QMainWindow):
 		uic.loadUi("ui/lattr.ui", self)
 		self.actionOpen.triggered.connect(self.openFileUi)
 		self.actionSaveAs.triggered.connect(self.saveLattrToFileUi)
+		self.actionExportAsTex.triggered.connect(self.saveLattrAsTexUi)
 		self.actionAbout.triggered.connect(self.showAboutWindow)
 
 	def closeEvent(self, event):
@@ -61,8 +62,8 @@ class LattrMainWindow(QtGui.QMainWindow):
 		self.inputReceiver.setPlainText(lattr.receiver)
 		## sentences
 		self.inputObject.setText(lattr.object)
-		self.inputIntroduction.setText(lattr.text)
-		self.inputEnding.setText(lattr.ending)
+		self.inputOpening.setText(lattr.opening)
+		self.inputClosing.setText(lattr.closing)
 		self.inputSignature.setPlainText(lattr.signature)
 		## text
 		self.inputText.setPlainText(lattr.text)
@@ -91,8 +92,8 @@ class LattrMainWindow(QtGui.QMainWindow):
 		l.receiver = self.inputReceiver.toPlainText()
 		## sentences
 		l.object = self.inputObject.text()
-		l.introduction = self.inputIntroduction.text()
-		l.ending = self.inputEnding.text()
+		l.opening = self.inputOpening.text()
+		l.closing = self.inputClosing.text()
 		l.signature = self.inputSignature.toPlainText()
 		## text
 		l.text = self.inputText.toPlainText()
@@ -107,7 +108,7 @@ class LattrMainWindow(QtGui.QMainWindow):
 
 	def openFileUi(self):
 		"Opens a file dialog to open an existing document"
-		pathToFile = QtGui.QFileDialog.getOpenFileName(self, 'Open File')
+		pathToFile = QtGui.QFileDialog.getOpenFileName(self, 'Open File', '', '*.lattr')
 		openedFile = open(pathToFile, 'rb')
 		openedLattr = pickle.load(openedFile)
 		openedFile.close()
@@ -115,11 +116,18 @@ class LattrMainWindow(QtGui.QMainWindow):
 
 	def saveLattrToFileUi(self):
 		"Opens a file dialog to save the current document"
-		pathToFile = QtGui.QFileDialog.getOpenFileName(self, 'Save File')
+		pathToFile = QtGui.QFileDialog.getOpenFileName(self, 'Save File', '', '*.lattr')
 		l = self.getUiData()
 		l.saveLattrToFile(pathToFile)
 
+	def saveLattrAsTexUi(self):
+		"Opens a file dialog to save the current document as *.tex file"
+		pathToFile = QtGui.QFileDialog.getOpenFileName(self, 'Save File', '', '*.tex')
+		l = self.getUiData()
+		l.saveLattrAsTex(pathToFile)
+
 	def showAboutWindow(self):
+		"Opens an about window"
 		widget = LattrAboutWindow()
 		widget.exec()
 

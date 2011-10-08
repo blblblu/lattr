@@ -21,8 +21,10 @@ This file contains all lattr specific functions, e.g. modifying the template.
 It also contains the default values for the letter.
 '''
 
+import os
 import datetime
 import pickle
+import re
 
 # variables for text align
 align_block = 0
@@ -41,7 +43,7 @@ class lattr(object):
 	# document settings
 	newTemplate, newFontsize, newLanguage, newAlign, newDate,
 	# content
-	newSendername, newSenderaddress, newReceiver, newObject, newIntroduction, newEnding, newSignature,
+	newSendername, newSenderaddress, newReceiver, newObject, newOpening, newClosing, newSignature,
 	newText,
 	# extras
 	newPackages, newBoolAttachement, newAttachement):
@@ -61,8 +63,8 @@ class lattr(object):
 		self.receiver = newReceiver
 		## sentences
 		self.object = newObject
-		self.introduction = newObject
-		self.ending = newEnding
+		self.opening = newOpening
+		self.closing = newClosing
 		self.signature = newSignature
 		## text
 		self.text = newText
@@ -74,7 +76,44 @@ class lattr(object):
 		self.attachement = newAttachement
 
 	def saveLattrToFile(self, pathToFile):
-		"Save an existing lattr object to file"
+		"Saves lattr object to file"
 		f = open(pathToFile, 'wb')
 		pickle.dump(self, f)
+		f.close()
+
+	def saveLattrAsTex(self, pathToFile):
+		"Saves lattr object as *.tex file"
+		templateFile = open(os.getcwd()+'/templates/'+self.template+'/template.tex', 'r')
+		letter = templateFile.read()
+		templateFile.close()
+		# document settings
+		## document
+		letter = re.sub(r'%<fontsize>', str(self.fontsize), letter)
+		letter = re.sub(r'%<language>', self.language, letter)
+		#letter = re.sub(r'%<align>', self.align, letter)
+		## time
+		letter = re.sub(r'%<date>', self.date.toString(), letter)
+		# content
+		## addresses
+		letter = re.sub(r'%<sendername>', self.sendername, letter)
+		letter = re.sub(r'%<senderaddress>', self.senderaddress, letter)
+		letter = re.sub(r'%<receiver>', self.receiver, letter)
+		## sentences
+		letter = re.sub(r'%<object>', self.object, letter)
+		letter = re.sub(r'%<opening>', self.opening, letter)
+		letter = re.sub(r'%<closing>', self.closing, letter)
+		letter = re.sub(r'%<signature>', self.signature, letter)
+		## text
+		letter = re.sub(r'%<text>', self.text, letter)
+		# extras
+		## packages
+		letter = re.sub(r'%<packages>', self.packages, letter)
+		## attachements
+		if self.boolAttachement:
+			letter = re.sub(r'%<boolAttachement>', '', letter)
+		else:
+			letter = re.sub(r'%<boolAttachement>', '%', letter)
+		letter = re.sub(r'%<attachement>', self.attachement, letter)
+		f = open(pathToFile, 'w')
+		f.write(letter)
 		f.close()
