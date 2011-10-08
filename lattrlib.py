@@ -31,13 +31,17 @@ align_block = 0
 align_left = 1
 align_right = 2
 
+def rawString(string):
+	"Like repr(), but without the first and last character"
+	return(repr(string)[1:-1])
+
 class lattr(object):
 	"The lattr class"
 	def __init__(self):
 		super(lattr, self).__init__()
 
 		# set data to defaults
-		self.setData('scrlttr2', 10.0, 'ngerman', align_block, datetime.date.today(), '', '', '', '', '', '', '', '', '', False, '')
+		self.setData('scrlttr2', 10, 'ngerman', align_block, datetime.date.today(), '', '', '', '', '', '', '', '', '', False, '')
 
 	def setData(self,
 	# document settings
@@ -89,31 +93,34 @@ class lattr(object):
 		# document settings
 		## document
 		letter = re.sub(r'%<fontsize>', str(self.fontsize), letter)
-		letter = re.sub(r'%<language>', self.language, letter)
-		#letter = re.sub(r'%<align>', self.align, letter)
+		letter = re.sub(r'%<language>', rawString(self.language), letter)
+		if self.align == align_left:
+			letter = re.sub(r'%<align>', '\\\\flushleft', letter)
+		if self.align == align_right:
+			letter = re.sub(r'%<align>', '\\\\flushright', letter)
 		## time
 		letter = re.sub(r'%<date>', self.date.toString(), letter)
 		# content
 		## addresses
-		letter = re.sub(r'%<sendername>', self.sendername, letter)
-		letter = re.sub(r'%<senderaddress>', self.senderaddress, letter)
-		letter = re.sub(r'%<receiver>', self.receiver, letter)
+		letter = re.sub(r'%<sendername>', rawString(self.sendername), letter)
+		letter = re.sub(r'%<senderaddress>', rawString(self.senderaddress), letter)
+		letter = re.sub(r'%<receiver>', rawString(self.receiver), letter)
 		## sentences
-		letter = re.sub(r'%<object>', self.object, letter)
-		letter = re.sub(r'%<opening>', self.opening, letter)
-		letter = re.sub(r'%<closing>', self.closing, letter)
-		letter = re.sub(r'%<signature>', self.signature, letter)
+		letter = re.sub(r'%<object>', rawString(self.object), letter)
+		letter = re.sub(r'%<opening>', rawString(self.opening), letter)
+		letter = re.sub(r'%<closing>', rawString(self.closing), letter)
+		letter = re.sub(r'%<signature>', rawString(self.signature), letter)
 		## text
-		letter = re.sub(r'%<text>', self.text, letter)
+		letter = re.sub(r'%<text>', rawString(self.text), letter)
 		# extras
 		## packages
-		letter = re.sub(r'%<packages>', self.packages, letter)
+		letter = re.sub(r'%<packages>', rawString(self.packages), letter)
 		## attachements
 		if self.boolAttachement:
 			letter = re.sub(r'%<boolAttachement>', '', letter)
 		else:
 			letter = re.sub(r'%<boolAttachement>', '%', letter)
-		letter = re.sub(r'%<attachement>', self.attachement, letter)
+		letter = re.sub(r'%<attachement>', rawString(self.attachement), letter)
 		f = open(pathToFile, 'w')
 		f.write(letter)
 		f.close()

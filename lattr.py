@@ -116,13 +116,13 @@ class LattrMainWindow(QtGui.QMainWindow):
 
 	def saveLattrToFileUi(self):
 		"Opens a file dialog to save the current document"
-		pathToFile = QtGui.QFileDialog.getOpenFileName(self, 'Save File', '', '*.lattr')
+		pathToFile = QtGui.QFileDialog.getSaveFileName(self, 'Save File', '', '*.lattr')
 		l = self.getUiData()
 		l.saveLattrToFile(pathToFile)
 
 	def saveLattrAsTexUi(self):
 		"Opens a file dialog to save the current document as *.tex file"
-		pathToFile = QtGui.QFileDialog.getOpenFileName(self, 'Save File', '', '*.tex')
+		pathToFile = QtGui.QFileDialog.getSaveFileName(self, 'Save File', '', '*.tex')
 		l = self.getUiData()
 		l.saveLattrAsTex(pathToFile)
 
