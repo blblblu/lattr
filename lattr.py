@@ -21,7 +21,7 @@ lattr is a program to fetch information from the user (e.g. about the sender, th
 It creates a *tex file with that information, built with a template.
 '''
 
-import sys
+import sys, locale
 from PyQt4 import QtCore, QtGui, uic
 import pickle
 from lattrlib import *
@@ -37,8 +37,8 @@ class LattrMainWindow(QtGui.QMainWindow):
 		self.actionAbout.triggered.connect(self.showAboutWindow)
 
 	def closeEvent(self, event):
-		reply = QtGui.QMessageBox.question(self, 'Message',
-			"Are you sure to quit?", QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
+		reply = QtGui.QMessageBox.question(self, 'Quit application?',
+			("Are you sure to quit?"), QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
 
 		if reply == QtGui.QMessageBox.Yes:
 			event.accept()
@@ -139,8 +139,11 @@ class LattrAboutWindow(QtGui.QDialog):
 		QtGui.QWidget.__init__(self, *args)
 		uic.loadUi("ui/about.ui", self)
 
-if __name__ == '__main__':
-	app = QtGui.QApplication(sys.argv)
+def main(args):
+	app = QtGui.QApplication(args)
+	translator = QtCore.QTranslator(app)
+	translator.load("lattr_"+locale.getlocale()[0]+".qm")
+	app.installTranslator(translator)
 	widget = LattrMainWindow()
 	widget.show()
 	# lattr instance for current letter
@@ -148,3 +151,6 @@ if __name__ == '__main__':
 	widget.setUiData(l)
 	
 	app.exec_()
+
+if __name__ == '__main__':
+	main(sys.argv)
