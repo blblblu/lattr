@@ -63,13 +63,6 @@
            <property name="fieldGrowthPolicy">
             <enum>QFormLayout::FieldsStayAtSizeHint</enum>
            </property>
-           <item row="0" column="0">
-            <widget class="QLabel" name="labelTemplate">
-             <property name="text">
-              <string>Template</string>
-             </property>
-            </widget>
-           </item>
            <item row="0" column="1">
             <widget class="QLineEdit" name="inputTemplate">
              <property name="enabled">
@@ -86,6 +79,9 @@
               <string>Font size</string>
              </property>
             </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QSpinBox" name="inputFontsize"/>
            </item>
            <item row="2" column="0">
             <widget class="QLabel" name="labelLanguage">
@@ -127,8 +123,12 @@
              </item>
             </widget>
            </item>
-           <item row="1" column="1">
-            <widget class="QSpinBox" name="inputFontsize"/>
+           <item row="0" column="0">
+            <widget class="QLabel" name="labelTemplate">
+             <property name="text">
+              <string>Template</string>
+             </property>
+            </widget>
            </item>
           </layout>
          </widget>
@@ -346,7 +346,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>24</height>
+     <height>29</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuDatei">
@@ -438,12 +438,18 @@
   <tabstop>inputLanguage</tabstop>
   <tabstop>inputAlign</tabstop>
   <tabstop>inputDate</tabstop>
+  <tabstop>tabWidget_2</tabstop>
   <tabstop>inputSendername</tabstop>
+  <tabstop>inputSenderaddress</tabstop>
   <tabstop>inputReceiver</tabstop>
+  <tabstop>inputObject</tabstop>
+  <tabstop>inputOpening</tabstop>
+  <tabstop>inputClosing</tabstop>
+  <tabstop>inputSignature</tabstop>
+  <tabstop>inputText</tabstop>
   <tabstop>inputPackages</tabstop>
   <tabstop>boolAttachement</tabstop>
   <tabstop>inputAttachement</tabstop>
-  <tabstop>inputSenderaddress</tabstop>
  </tabstops>
  <resources/>
  <connections>
