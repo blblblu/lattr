@@ -23,6 +23,7 @@ It creates a *tex file with that information, built with a template.
 
 import sys
 from PyQt4 import QtCore, QtGui, uic
+import pickle
 from lattrlib import *
 
 class LattrMainWindow(QtGui.QMainWindow):
@@ -30,8 +31,105 @@ class LattrMainWindow(QtGui.QMainWindow):
 	def __init__(self, *args):
 		QtGui.QWidget.__init__(self, *args)
 		uic.loadUi("ui/lattr.ui", self)
+		self.actionOpen.triggered.connect(self.openFileUi)
+		self.actionSaveAs.triggered.connect(self.saveLattrToFileUi)
+		self.actionAbout.triggered.connect(self.showAboutWindow)
+
+	def closeEvent(self, event):
+		reply = QtGui.QMessageBox.question(self, 'Message',
+			"Are you sure to quit?", QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
+
+		if reply == QtGui.QMessageBox.Yes:
+			event.accept()
+		else:
+			event.ignore()
+
+	def setUiData(self, lattr):
+		"set forms to values of a given lattr object"
+		# document settings
+		## document
+		self.inputTemplate.setText(lattr.template)
+		self.inputFontsize.setValue(lattr.fontsize)
+		self.inputLanguage.setText(lattr.language)
+		self.inputAlign.setCurrentIndex(lattr.align)
+		## time
+		self.inputDate.setDate(lattr.date)
+		# content
+		## addresses
+		self.inputSendername.setText(lattr.sendername)
+		self.inputSenderaddress.setPlainText(lattr.senderaddress)
+		self.inputReceiver.setPlainText(lattr.receiver)
+		## sentences
+		self.inputObject.setText(lattr.object)
+		self.inputIntroduction.setText(lattr.text)
+		self.inputEnding.setText(lattr.ending)
+		self.inputSignature.setPlainText(lattr.signature)
+		## text
+		self.inputText.setPlainText(lattr.text)
+		# extras
+		## packages
+		self.inputPackages.setPlainText(lattr.packages)
+		## attachements
+		self.boolAttachement.setCheckState(lattr.boolAttachement)
+		self.inputAttachement.setPlainText(lattr.attachement)
+
+	def getUiData(self):
+		"Returns a lattr object containing the current information"
+		l = lattr()
+		# document settings
+		## document
+		l.template = self.inputTemplate.text()
+		l.fontsize = self.inputFontsize.value()
+		l.language = self.inputLanguage.text()
+		l.align = self.inputAlign.currentIndex()
+		## time
+		l.date = self.inputDate.date()
+		# content
+		## addresses
+		l.sendername = self.inputSendername.text()
+		l.senderaddress = self.inputSenderaddress.toPlainText()
+		l.receiver = self.inputReceiver.toPlainText()
+		## sentences
+		l.object = self.inputObject.text()
+		l.introduction = self.inputIntroduction.text()
+		l.ending = self.inputEnding.text()
+		l.signature = self.inputSignature.toPlainText()
+		## text
+		l.text = self.inputText.toPlainText()
+		# extras
+		## packages
+		l.packages = self.inputPackages.toPlainText()
+		## attachements
+		l.boolAttachement = self.boolAttachement.checkState()
+		l.attachement = self.inputAttachement.toPlainText()
+		return l
+
+
+	def openFileUi(self):
+		"Opens a file dialog to open an existing document"
+		pathToFile = QtGui.QFileDialog.getOpenFileName(self, 'Open File')
+		openedFile = open(pathToFile, 'rb')
+		openedLattr = pickle.load(openedFile)
+		openedFile.close()
+		self.setUiData(openedLattr)
+
+	def saveLattrToFileUi(self):
+		"Opens a file dialog to save the current document"
+		pathToFile = QtGui.QFileDialog.getOpenFileName(self, 'Save File')
+		l = self.getUiData()
+		l.saveLattrToFile(pathToFile)
+
+	def showAboutWindow(self):
+		widget = LattrAboutWindow()
+		widget.exec()
 
 	#@QtCore.pyqtSignature("")
+
+class LattrAboutWindow(QtGui.QDialog):
+	"Class for the lattr about window"
+	def __init__(self, *args):
+		QtGui.QWidget.__init__(self, *args)
+		uic.loadUi("ui/about.ui", self)
 
 if __name__ == '__main__':
 	app = QtGui.QApplication(sys.argv)
@@ -39,32 +137,6 @@ if __name__ == '__main__':
 	widget.show()
 	# lattr instance for current letter
 	l = lattr()
-	# set forms to defaults
-	# document settings
-	## document
-	widget.inputTemplate.setText(l.template)
-	widget.inputFontsize.setValue(l.fontsize)
-	widget.inputLanguage.setText(l.language)
-	widget.inputAlign.setCurrentIndex(l.align)
-	## time
-	widget.inputDate.setDate(l.date)
-	# content
-	## addresses
-	widget.inputSendername.setText(l.sendername)
-	widget.inputSenderaddress.setPlainText(l.senderaddress)
-	widget.inputReceiver.setPlainText(l.receiver)
-	## sentences
-	widget.inputObject.setText(l.object)
-	widget.inputIntroduction.setText(l.text)
-	widget.inputEnding.setText(l.ending)
-	widget.inputSignature.setPlainText(l.signature)
-	## text
-	widget.inputText.setPlainText(l.text)
-	# extras
-	## packages
-	widget.inputPackages.setPlainText(l.packages)
-	## attachements
-	widget.boolAttachement.setCheckState(l.boolAttachement)
-	widget.inputAttachement.setPlainText(l.attachement)
-
+	widget.setUiData(l)
+	
 	app.exec_()

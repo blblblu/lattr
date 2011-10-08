@@ -22,6 +22,7 @@ It also contains the default values for the letter.
 '''
 
 import datetime
+import pickle
 
 # variables for text align
 align_block = 0
@@ -29,7 +30,7 @@ align_left = 1
 align_right = 2
 
 class lattr(object):
-	"the lattr class"
+	"The lattr class"
 	def __init__(self):
 		super(lattr, self).__init__()
 
@@ -44,7 +45,7 @@ class lattr(object):
 	newText,
 	# extras
 	newPackages, newBoolAttachement, newAttachement):
-		"function for setting the whole letter at once"
+		"Function for setting the whole letter at once"
 		# document settings
 		## document
 		self.template = newTemplate
@@ -71,3 +72,9 @@ class lattr(object):
 		## attachements
 		self.boolAttachement = newBoolAttachement
 		self.attachement = newAttachement
+
+	def saveLattrToFile(self, pathToFile):
+		"Save an existing lattr object to file"
+		f = open(pathToFile, 'wb')
+		pickle.dump(self, f)
+		f.close()
