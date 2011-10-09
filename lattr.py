@@ -31,6 +31,7 @@ class LattrMainWindow(QtGui.QMainWindow):
 	def __init__(self, *args):
 		QtGui.QWidget.__init__(self, *args)
 		uic.loadUi("ui/lattr.ui", self)
+		self.actionNew.triggered.connect(self.newFileUi)
 		self.actionOpen.triggered.connect(self.openFileUi)
 		self.actionSaveAs.triggered.connect(self.saveLattrToFileUi)
 		self.actionExportAsTex.triggered.connect(self.saveLattrAsTexUi)
@@ -105,6 +106,10 @@ class LattrMainWindow(QtGui.QMainWindow):
 		l.attachement = self.inputAttachement.toPlainText()
 		return l
 
+	def newFileUi(self):
+		"Resets the input fields"
+		l = lattr()
+		self.setUiData(l)
 
 	def openFileUi(self):
 		"Opens a file dialog to open an existing document"
@@ -124,7 +129,10 @@ class LattrMainWindow(QtGui.QMainWindow):
 		"Opens a file dialog to save the current document as *.tex file"
 		pathToFile = QtGui.QFileDialog.getSaveFileName(self, 'Save File', '', '*.tex')
 		l = self.getUiData()
-		l.saveLattrAsTex(pathToFile)
+		try:
+			l.saveLattrAsTex(pathToFile)
+		except IOError:
+			QtGui.QMessageBox.warning(self, 'No such template', 'The chosen template couldn\'t be found.')
 
 	def showAboutWindow(self):
 		"Opens an about window"
