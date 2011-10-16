@@ -19,6 +19,14 @@ Licence
 >    You should have received a copy of the GNU General Public License
 >    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+Requisites
+----------
+
+To use lattr, you need
+- Git (just for the installation)
+- Python 3
+- PyQt
+- (pdf)LaTeX (if you want to convert your *.tex file directly in lattr)
 
 Installation
 ------------
@@ -27,6 +35,6 @@ Installation
 	cd lattr/
 	python lattr.py
 
-on systems with Python 2 as standard, the last line have to be
+on systems with Python 2 as standard, the last line has to be
 
 	python3 lattr.py
