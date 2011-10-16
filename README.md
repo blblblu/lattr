@@ -23,6 +23,7 @@ Requisites
 ----------
 
 To use lattr, you need
+
 - Git (just for the installation)
 - Python 3
 - PyQt
