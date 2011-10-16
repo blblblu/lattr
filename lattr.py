@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# lattr - A little application to create letters in LaTeX easily
+#    lattr - A little application to create letters in LaTeX easily
 #
 #    Copyright (C) 2011  Sebastian Schulz
 #
@@ -21,16 +21,18 @@ lattr is a program to fetch information from the user (e.g. about the sender, th
 It creates a *tex file with that information, built with a template.
 '''
 
-import sys, locale
+import os, sys, locale
 from PyQt4 import QtCore, QtGui, uic
 import pickle
 from lattrlib import *
 
 class LattrMainWindow(QtGui.QMainWindow):
 	"Class for the lattr main window"
-	def __init__(self, *args):
+	def __init__(self, uiDir, templateDir, *args):
 		QtGui.QWidget.__init__(self, *args)
-		uic.loadUi("ui/lattr.ui", self)
+		self.uiDir = uiDir
+		uic.loadUi(self.uiDir+'lattr.ui', self)
+		self.templateDir = templateDir
 		self.actionNew.triggered.connect(self.newFileUi)
 		self.actionOpen.triggered.connect(self.openFileUi)
 		self.actionSaveAs.triggered.connect(self.saveLattrToFileUi)
@@ -39,8 +41,7 @@ class LattrMainWindow(QtGui.QMainWindow):
 
 	def closeEvent(self, event):
 		reply = QtGui.QMessageBox.question(self, 'Quit application?',
-			("Are you sure to quit?"), QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
-
+			'Are you sure to quit?', QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
 		if reply == QtGui.QMessageBox.Yes:
 			event.accept()
 		else:
@@ -113,11 +114,16 @@ class LattrMainWindow(QtGui.QMainWindow):
 
 	def openFileUi(self):
 		"Opens a file dialog to open an existing document"
+		# TODO: Fehlerabfrage hinzufuegen
 		pathToFile = QtGui.QFileDialog.getOpenFileName(self, 'Open File', '', '*.lattr')
-		openedFile = open(pathToFile, 'rb')
-		openedLattr = pickle.load(openedFile)
-		openedFile.close()
-		self.setUiData(openedLattr)
+		try:
+			openedFile = open(pathToFile, 'rb')
+			openedLattr = pickle.load(openedFile)
+			openedFile.close()
+			self.setUiData(openedLattr)
+		except IOError:
+			# do not show errors when no file is selected in the file dialog
+			pass
 
 	def saveLattrToFileUi(self):
 		"Opens a file dialog to save the current document"
@@ -127,36 +133,47 @@ class LattrMainWindow(QtGui.QMainWindow):
 
 	def saveLattrAsTexUi(self):
 		"Opens a file dialog to save the current document as *.tex file"
+		# TODO: Fehlerabfrage hinzufuegen
 		pathToFile = QtGui.QFileDialog.getSaveFileName(self, 'Save File', '', '*.tex')
 		l = self.getUiData()
-		try:
-			l.saveLattrAsTex(pathToFile)
-		except IOError:
-			QtGui.QMessageBox.warning(self, 'No such template', 'The chosen template couldn\'t be found.')
+		status = l.saveLattrAsTex(self.templateDir, pathToFile)
+		if status == 0:
+			reply = QtGui.QMessageBox.question(self,'*.tex file saved',
+				'the *.tex file was successfully saved\nCreate a *.dvi or *.pdf file?',
+				'No', '*.dvi', '*.pdf')
+			if reply == 1:	# *.dvi
+				buildDvi(pathToFile)
+			if reply == 2:	# *.pdf
+				buildPdf(pathToFile)
+		if status == 1:
+			QtGui.QMessageBox.warning(self, 'loading template failed', 'could not open the chosen template')
+		if status == 2:
+			QtGui.QMessageBox.warning(self, 'saving *.tex file failed', 'the *.tex file couldn\'t be saved')
 
 	def showAboutWindow(self):
 		"Opens an about window"
-		widget = LattrAboutWindow()
-		widget.exec()
+		widget = LattrAboutWindow(self.uiDir, self)
+		widget.exec_()
 
 	#@QtCore.pyqtSignature("")
 
 class LattrAboutWindow(QtGui.QDialog):
 	"Class for the lattr about window"
-	def __init__(self, *args):
+	def __init__(self, uiDir, *args):
 		QtGui.QWidget.__init__(self, *args)
-		uic.loadUi("ui/about.ui", self)
+		uic.loadUi(uiDir+'about.ui', self)
 
 def main(args):
+	"The main function"
+	uiDir = os.getcwd()+'/ui/'
+	templateDir = os.getcwd()+'/templates/'
 	app = QtGui.QApplication(args)
 	translator = QtCore.QTranslator(app)
 	translator.load("lattr_"+locale.getlocale()[0]+".qm")
 	app.installTranslator(translator)
-	widget = LattrMainWindow()
+	widget = LattrMainWindow(uiDir, templateDir)
 	widget.show()
-	# lattr instance for current letter
-	l = lattr()
-	widget.setUiData(l)
+	widget.newFileUi()
 	
 	app.exec_()
 

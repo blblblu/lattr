@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# lattrlib - library for lattr
+#    lattrlib - library for lattr
 #
 #    Copyright (C) 2011  Sebastian Schulz
 #
@@ -34,6 +34,16 @@ align_right = 2
 def rawString(string):
 	"Like repr(), but without the first and last character"
 	return(repr(string)[1:-1])
+
+def buildDvi(pathToTex):
+	"Runs LaTeX and opens a saved *.tex file"
+	os.chdir(re.sub(r'[^/]*$', '', pathToTex))
+	return os.system('latex '+pathToTex)
+
+def buildPdf(pathToTex):
+	"Runs pdflatex and opens a saved *.tex file"
+	os.chdir(re.sub(r'[^/]*$', '', pathToTex))
+	return os.system('pdflatex '+pathToTex)
 
 class lattr(object):
 	"The lattr class"
@@ -85,42 +95,52 @@ class lattr(object):
 		pickle.dump(self, f)
 		f.close()
 
-	def saveLattrAsTex(self, pathToFile):
-		"Saves lattr object as *.tex file"
-		templateFile = open(os.getcwd()+'/templates/'+self.template+'/template.tex', 'r')
-		letter = templateFile.read()
-		templateFile.close()
-		# document settings
-		## document
-		letter = re.sub(r'%<fontsize>', str(self.fontsize), letter)
-		letter = re.sub(r'%<language>', rawString(self.language), letter)
-		if self.align == align_left:
-			letter = re.sub(r'%<align>', '\\\\flushleft', letter)
-		if self.align == align_right:
-			letter = re.sub(r'%<align>', '\\\\flushright', letter)
-		## time
-		letter = re.sub(r'%<date>', self.date.toString(), letter)
-		# content
-		## addresses
-		letter = re.sub(r'%<sendername>', rawString(self.sendername), letter)
-		letter = re.sub(r'%<senderaddress>', rawString(self.senderaddress), letter)
-		letter = re.sub(r'%<receiver>', rawString(self.receiver), letter)
-		## sentences
-		letter = re.sub(r'%<object>', rawString(self.object), letter)
-		letter = re.sub(r'%<opening>', rawString(self.opening), letter)
-		letter = re.sub(r'%<closing>', rawString(self.closing), letter)
-		letter = re.sub(r'%<signature>', rawString(self.signature), letter)
-		## text
-		letter = re.sub(r'%<text>', rawString(self.text), letter)
-		# extras
-		## packages
-		letter = re.sub(r'%<packages>', rawString(self.packages), letter)
-		## attachements
-		if self.boolAttachement:
-			letter = re.sub(r'%<boolAttachement>', '', letter)
-		else:
-			letter = re.sub(r'%<boolAttachement>', '%', letter)
-		letter = re.sub(r'%<attachement>', rawString(self.attachement), letter)
-		f = open(pathToFile, 'w')
-		f.write(letter)
-		f.close()
+	def saveLattrAsTex(self, templateDir, pathToFile):
+		'''
+		Saves lattr object as *.tex file
+		Returns 0 if it worked
+		'''
+		try:
+			templateFile = open(templateDir+self.template+'/template.tex', 'r')
+			letter = templateFile.read()
+			templateFile.close()
+			# document settings
+			## document
+			letter = re.sub(r'%<fontsize>', str(self.fontsize), letter)
+			letter = re.sub(r'%<language>', rawString(self.language), letter)
+			if self.align == align_left:
+				letter = re.sub(r'%<align>', '\\\\flushleft', letter)
+			if self.align == align_right:
+				letter = re.sub(r'%<align>', '\\\\flushright', letter)
+			## time
+			letter = re.sub(r'%<date>', self.date.toString(), letter)
+			# content
+			## addresses
+			letter = re.sub(r'%<sendername>', rawString(self.sendername), letter)
+			letter = re.sub(r'%<senderaddress>', rawString(self.senderaddress), letter)
+			letter = re.sub(r'%<receiver>', rawString(self.receiver), letter)
+			## sentences
+			letter = re.sub(r'%<object>', rawString(self.object), letter)
+			letter = re.sub(r'%<opening>', rawString(self.opening), letter)
+			letter = re.sub(r'%<closing>', rawString(self.closing), letter)
+			letter = re.sub(r'%<signature>', rawString(self.signature), letter)
+			## text
+			letter = re.sub(r'%<text>', rawString(self.text), letter)
+			# extras
+			## packages
+			letter = re.sub(r'%<packages>', rawString(self.packages), letter)
+			## attachements
+			if self.boolAttachement:
+				letter = re.sub(r'%<boolAttachement>', '', letter)
+			else:
+				letter = re.sub(r'%<boolAttachement>', '%', letter)
+			letter = re.sub(r'%<attachement>', rawString(self.attachement), letter)
+		except IOError:
+			return 1
+		try:
+			f = open(pathToFile, 'w')
+			f.write(letter)
+			f.close()
+			return 0
+		except IOError:
+			return 2

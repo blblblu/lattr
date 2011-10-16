@@ -2,24 +2,22 @@
 <!DOCTYPE TS>
 <TS version="2.0" language="de_DE">
 <context>
-    <name>Dialog</name>
+    <name>About</name>
     <message>
-        <source>Dialog</source>
-        <translation>Dialog</translation>
+        <source>About</source>
+        <translation>Über</translation>
     </message>
     <message>
         <source>lattr</source>
         <translation>lattr</translation>
     </message>
     <message>
-        <source>About</source>
-        <translation>Über</translation>
-    </message>
-    <message>
         <source>lattr - Easily create LaTeX letters
 
 (c) 2011 Sebastian Schulz</source>
-        <translation>lattr - Einfach LaTeX-Briefe erstellen</translation>
+        <translation>lattr - Einfach LaTeX-Briefe erstellen
+
+(c) 2011 Sebastian Schulz</translation>
     </message>
     <message>
         <source>License</source>
@@ -28,16 +26,14 @@
     <message>
         <source>Copyright (C) 2011  Sebastian Schulz
 
-This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
 This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</source>
         <translation>Copyright (C) 2011  Sebastian Schulz
 
-This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
 This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
