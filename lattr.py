@@ -165,8 +165,8 @@ class LattrAboutWindow(QtGui.QDialog):
 
 def main(args):
 	"The main function"
-	uiDir = os.getcwd()+'/ui/'
-	templateDir = os.getcwd()+'/templates/'
+	uiDir = os.path.dirname(args[0])+'/ui/'
+	templateDir = os.path.dirname(args[0])+'/templates/'
 	app = QtGui.QApplication(args)
 	translator = QtCore.QTranslator(app)
 	translator.load("lattr_"+locale.getlocale()[0]+".qm")
