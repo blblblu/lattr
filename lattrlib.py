@@ -37,12 +37,12 @@ def rawString(string):
 
 def buildDvi(pathToTex):
 	"Runs LaTeX and opens a saved *.tex file"
-	os.chdir(re.sub(r'[^/]*$', '', pathToTex))
+	os.chdir(os.path.dirname(pathToTex))
 	return os.system('latex '+pathToTex)
 
 def buildPdf(pathToTex):
 	"Runs pdflatex and opens a saved *.tex file"
-	os.chdir(re.sub(r'[^/]*$', '', pathToTex))
+	os.chdir(os.path.dirname(pathToTex))
 	return os.system('pdflatex '+pathToTex)
 
 class lattr(object):
