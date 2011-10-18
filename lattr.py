@@ -169,7 +169,8 @@ def main(args):
 	templateDir = os.path.dirname(args[0])+'/templates/'
 	app = QtGui.QApplication(args)
 	translator = QtCore.QTranslator(app)
-	translator.load("lattr_"+locale.getlocale()[0]+".qm")
+	if locale.getlocale()[0] != None:
+		translator.load("lattr_"+locale.getlocale()[0]+".qm")
 	app.installTranslator(translator)
 	widget = LattrMainWindow(uiDir, templateDir)
 	widget.show()
