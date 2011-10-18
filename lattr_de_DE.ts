@@ -151,24 +151,12 @@ You should have received a copy of the GNU General Public License along with thi
         <translation>Anhänge benutzen?</translation>
     </message>
     <message>
-        <source>Export</source>
-        <translation>Exportieren</translation>
-    </message>
-    <message>
         <source>Save</source>
         <translation>Speichern</translation>
     </message>
     <message>
         <source>Save as...</source>
         <translation>Speichern unter...</translation>
-    </message>
-    <message>
-        <source>As *.tex...</source>
-        <translation>Als *.tex-Datei...</translation>
-    </message>
-    <message>
-        <source>As *.pdf...</source>
-        <translation>Als *.pdf-Datei...</translation>
     </message>
     <message>
         <source>Quit</source>
@@ -193,6 +181,10 @@ You should have received a copy of the GNU General Public License along with thi
     <message>
         <source>Open...</source>
         <translation>Öffnen...</translation>
+    </message>
+    <message>
+        <source>Export As *.tex...</source>
+        <translation>Als *.tex exportieren...</translation>
     </message>
 </context>
 </TS>

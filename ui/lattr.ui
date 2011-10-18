@@ -346,27 +346,20 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>29</height>
+     <height>24</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuDatei">
     <property name="title">
      <string>File</string>
     </property>
-    <widget class="QMenu" name="menuExport">
-     <property name="title">
-      <string>Export</string>
-     </property>
-     <addaction name="actionExportAsTex"/>
-     <addaction name="actionExportAsPdf"/>
-    </widget>
     <addaction name="actionNew"/>
     <addaction name="actionOpen"/>
     <addaction name="separator"/>
     <addaction name="actionSave"/>
     <addaction name="actionSaveAs"/>
     <addaction name="separator"/>
-    <addaction name="menuExport"/>
+    <addaction name="actionExportAsTex"/>
     <addaction name="separator"/>
     <addaction name="actionQuit"/>
    </widget>
@@ -397,19 +390,6 @@
     <string>Save as...</string>
    </property>
   </action>
-  <action name="actionExportAsTex">
-   <property name="text">
-    <string>As *.tex...</string>
-   </property>
-  </action>
-  <action name="actionExportAsPdf">
-   <property name="enabled">
-    <bool>false</bool>
-   </property>
-   <property name="text">
-    <string>As *.pdf...</string>
-   </property>
-  </action>
   <action name="actionQuit">
    <property name="text">
     <string>Quit</string>
@@ -428,6 +408,11 @@
   <action name="actionOpen">
    <property name="text">
     <string>Open...</string>
+   </property>
+  </action>
+  <action name="actionExportAsTex">
+   <property name="text">
+    <string>Export As *.tex...</string>
    </property>
   </action>
  </widget>
